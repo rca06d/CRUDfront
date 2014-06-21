@@ -1,0 +1,16 @@
+<div id="dialogUpload" rob-make-dialog="dialogOptions.upload" width="600" height="360">
+	<div id="pluploadContainer" rob-plupload url="http://localhost:3001/api/uploadclip" name="uploaded_files"></div>
+</div>
+
+<div id="dialogRecord" rob-make-dialog="dialogOptions.record">
+	<video id="videoRecordWindow" autoplay controls=""></video>
+	<div>
+		<button ng-click="startRecording()">Record</button>
+		<button ng-click="stopRecording()">Stop</button>
+		<button ng-click="uploadToServer()">Save</button>
+	</div>
+</div>
+
+<div id="dialogEdit" rob-make-dialog="dialogOptions.edit">
+	<label for="videoNameInput">Name:</label><input type="text" ng-model="selectedClip.name" id="videoNameInput" />
+</div>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html ng-app="VideoApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Audio App</title>
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery.ui.plupload.css" />
+    <link rel="stylesheet" type="text/css" href="css/menu.css" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+</head>
+
+<body ng-controller="VideoAppController as VideoCtrl" ng-init="getAllClips()">
+
+<div id="leftPane">
+	<h1>Loaded Files:</h1>
+	<select name="SelectedClip" ng-model="selectedClip" ng-options="clip.name for clip in clips" size="10"></select><br />
+
+	<button rob-open-dialog-button="dialogEdit">Edit Selected Video</button>
+	<button>Delete Selected Video</button>
+</div>
+	
+<div id="centerPane">
+	<video id="videoMainWindow" controls></video>
+</div>
+
+<div id="rightPane">
+	<button rob-open-dialog-button="dialogRecord">Record A Video</button>
+	<button rob-open-dialog-button="dialogUpload">Upload A Video</button>
+</div>
+
+
+<div id="dialogs" ng-include="'views/dialogs.html'"></div>
+
+</body>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/lib/angular.min.js"></script>
+<script type="text/javascript" src="js/lib/plupload.full.min.js"></script>
+<script type="text/javascript" src="js/lib/jquery.ui.plupload.min.js"></script>
+<script type="text/javascript" src="js/lib/MediaStreamRecorder.js"></script>
+<script type="text/javascript" src="js/VideoAppController.js"></script>
+<script type="text/javascript" src="js/init.js"></script>
+
+</html>

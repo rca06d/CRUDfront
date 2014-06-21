@@ -1,0 +1,40 @@
+* { font: 12px verdana, geneva, sans-serif; }
+
+h1 {
+	margin:0;
+	padding:0.7em 1.5em;
+	background: #EEEEEE; 
+	font-size:1em;
+}
+
+label {
+	vertical-align:middle;
+	margin:0 0.7em 0 0;
+    padding:0;
+}
+
+#leftPane, #centerPane, #rightPane {
+	margin:0.5em;
+	padding:0.5em;
+	float:left;
+	border:solid 1px #EEEEEE;
+}
+
+#leftPane {
+	padding:0;
+}
+
+#leftPane select {
+	border:0;
+	padding:0.5em;
+	margin:0;
+}
+
+#leftPane button, #rightPane button {
+	display:block;
+	width:100%;
+}
+
+#dialogEdit input {
+	width:300px;
+}
