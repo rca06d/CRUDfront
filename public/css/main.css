@@ -4,7 +4,8 @@ h1 {
 	margin:0;
 	padding:0.7em 1.5em;
 	background: #EEEEEE; 
-	font-size:1em;
+	font-size:1.2em;
+	font-weight: bold;
 }
 
 label {
@@ -20,19 +21,22 @@ label {
 	border:solid 1px #EEEEEE;
 }
 
-#leftPane {
+#rightPane {
 	padding:0;
 }
 
-#leftPane select {
+#rightPane select {
 	border:0;
 	padding:0.5em;
 	margin:0;
+	width:100%;
 }
 
 #leftPane button, #rightPane button {
 	display:block;
 	width:100%;
+	padding:1em 1.5em;
+	font-weight: bold;
 }
 
 #dialogEdit input {

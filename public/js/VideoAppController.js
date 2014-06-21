@@ -7,7 +7,7 @@ var VideoAppController = function($scope, $http) {
 	var streamRecorder;
 	var videoBlob;
 
-	navigator.getUserMedia({video: true, audio: true}, function(localMediaStream) {
+	function recordInit(localMediaStream) {
 		video = document.getElementById("videoRecordWindow");
 
 		mediaStream = localMediaStream;
@@ -17,23 +17,24 @@ var VideoAppController = function($scope, $http) {
 
 		streamRecorder = new MediaStreamRecorder(mediaStream);
 	    streamRecorder.mimeType = 'video/webm'; // this line is mandatory
+	    streamRecorder.videoWidth  = 640;
+        streamRecorder.videoHeight = 480;
 		streamRecorder.ondataavailable = function(blob) {
 			video.src = URL.createObjectURL(blob);
 			videoBlob = blob;
 	        video.play();
 	    };
 
-	}, function() { console.log('Reeeejected!', e); });
+	}
+
+	function permissionDenied() { 
+		console.log('Reeeejected!', e); 
+	}
 
 	//------------- data ------------------------//
 
 	$scope.clips = [];
 	$scope.selectedClip = {};
-
-	$scope.$watch("selectedClip", function(newValue, oldValue) {
-		var videoMain = document.getElementById("videoMainWindow");
-		videoMain.src = newValue.clientPath;
-	});
 
 	$scope.dialogOptions = {
 		record: { 
@@ -41,6 +42,9 @@ var VideoAppController = function($scope, $http) {
 			autoOpen: false,
 			width: 670,
 			height: 600,
+			open: function() {
+				navigator.getUserMedia({video: true, audio: true}, recordInit, permissionDenied);
+			}
 		},
 		upload: { 
 			modal: true, 
@@ -55,7 +59,7 @@ var VideoAppController = function($scope, $http) {
 			height: 250,
 			buttons: {
 		        "Save": function() {
-
+		        	$scope.updateClip();
 		        	$( this ).dialog( "close" );
 		        },
 		        Cancel: function() {
@@ -106,4 +110,17 @@ var VideoAppController = function($scope, $http) {
             $scope.selectedClip = $scope.clips[0] || {};
         });
     };
+
+    $scope.updateClip = function() {
+    	$http.put(apiServer + "updateclip/" + $scope.selectedClip._id, $scope.selectedClip).success(function(data) {
+            $scope.getAllClips();
+        });
+    };
+
+    $scope.deleteClip = function() {
+    	$http.delete(apiServer + "deleteclip/" + $scope.selectedClip._id).success(function(success) {
+            if (success) $scope.getAllClips();
+        });
+    };
+
 };
