@@ -18,6 +18,8 @@
 	
 <div id="centerPane">
 	<video id="videoMainWindow" controls ng-src="{{selectedClip.clientPath}}"></video>
+	<h1>Transcript:</h1>
+	<div id="selectedTranscript">{{selectedClip.transcript}}</div>
 </div>
 
 <div id="rightPane">
@@ -40,6 +42,7 @@
 <script type="text/javascript" src="js/lib/jquery.ui.plupload.min.js"></script>
 <script type="text/javascript" src="js/lib/MediaStreamRecorder.js"></script>
 
+<script type="text/javascript" src="js/VideoRecorderService.js"></script>
 <script type="text/javascript" src="js/VideoAppDirectives.js"></script>
 <script type="text/javascript" src="js/VideoAppController.js"></script>
 <script type="text/javascript" src="js/init.js"></script>

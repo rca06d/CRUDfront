@@ -16,7 +16,9 @@ app.directive('robOpenDialogButton', robOpenDialogButton);
 
 app.directive('robPlupload', robPlupload);
 
-VideoAppController.$inject = ["$scope", "$http"];
+app.factory("$videoRecorder", VideoRecorderFactory);
+
+VideoAppController.$inject = ["$scope", "$http", "$videoRecorder"];
 
 app.controller("VideoAppController", VideoAppController);
 })();

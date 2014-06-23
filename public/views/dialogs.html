@@ -7,10 +7,13 @@
 	<div>
 		<button ng-click="startRecording()">Record</button>
 		<button ng-click="stopRecording()">Stop</button>
-		<button ng-click="uploadToServer()">Save</button>
+		<button ng-click="uploadRecordedVideo()">Save</button>
 	</div>
+
+	<textarea id="workingTranscript" ng-model="transcript"></textarea>
 </div>
 
 <div id="dialogEdit" rob-make-dialog="dialogOptions.edit">
 	<label for="videoNameInput">Name:</label><input type="text" ng-model="selectedClip.name" id="videoNameInput" />
+	<label for="editTranscript">Transcript:</label><textarea id="editTranscript" ng-model="selectedClip.transcript"></textarea>
 </div>
