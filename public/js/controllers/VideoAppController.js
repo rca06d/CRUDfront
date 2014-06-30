@@ -44,6 +44,7 @@ VideoApp.controller('VideoAppController', function($scope, $http, videoRecorder,
 	speechRecognizer.onTranscriptComplete = function(transcript) {
 		if (vm.recordMode) {
 			vm.selectedClip.transcript = transcript;
+			console.log(transcript);
 		}
 	};
 
@@ -136,8 +137,7 @@ VideoApp.controller('VideoAppController', function($scope, $http, videoRecorder,
 
 			updateClip(vm.selectedClip)
 			.success(function(response, status, headers, config) {
-				console.log("Transcript saved: ");
-            	console.log(response);
+				console.log("Transcript saved!");
 				vm.getAllClips();    
 	        });
         });
@@ -152,16 +152,6 @@ VideoApp.controller('VideoAppController', function($scope, $http, videoRecorder,
 
 	vm.onPlayerChange = function(template) {
 		console.log(template);
-	};
-
-	vm.startRecording = function() {
-		videoRecorder.start();
-		speechRecognizer.start();
-	};
-
-	vm.stopRecording = function() {
-		speechRecognizer.stop();
-		videoRecorder.stop();
 	};
 
 	vm.getAllClips = function() {

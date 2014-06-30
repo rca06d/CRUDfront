@@ -10,9 +10,11 @@ VideoApp.directive('robRecorderControls', function (videoRecorder, speechRecogni
                 if (state == "Record") {
                     element.html("Stop");
                     videoRecorder.start();
+                    speechRecognizer.start();
                 } else {
                     element.html("Record");
                     videoRecorder.stop();
+                    speechRecognizer.stop();
                 }
                 
             });
