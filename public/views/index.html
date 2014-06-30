@@ -4,47 +4,64 @@
 <head>
     <meta charset="UTF-8">
     <title>Audio App</title>
-    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
     <link rel="stylesheet" type="text/css" href="css/jquery.ui.plupload.css" />
     <link rel="stylesheet" type="text/css" href="css/main.css" />
+
+    <script type="text/javascript" src="js/lib/swfobject/swfobject.js"></script>
 </head>
 
-<body ng-controller="VideoAppController as VideoCtrl" ng-init="getAllClips()">
+<body ng-controller="VideoAppController as vm">
 
 <div id="leftPane">
-	<button rob-open-dialog-button="dialogRecord">Record A Video</button>
-	<button rob-open-dialog-button="dialogUpload">Upload A Video</button>
+	<div>
+		<button id="openDialogRecord" ng-click="vm.recordButtonClick()">Record A Video</button>
+		<button id="openDialogUpload">Upload A Video</button>
+	</div>
+
+	<div ng-show="vm.recordMode">
+		<button id="recordButton" rob-recorder-controls>Record</button>
+		<button id="saveButton" ng-show="vm.recordedVideo" ng-click="vm.saveVideo()">Save Video</button>
+	</div>
 </div>
 	
 <div id="centerPane">
-	<video id="videoMainWindow" controls ng-src="{{selectedClip.clientPath}}"></video>
+	<div id="videoMain" ng-include="vm.videoPlayerTemplate"></div>
 	<h1>Transcript:</h1>
-	<div id="selectedTranscript">{{selectedClip.transcript}}</div>
+	<div id="selectedTranscript">{{vm.selectedClip.transcript}}</div>
+	<div ng-include="vm.templateSrc"></div>
 </div>
 
 <div id="rightPane">
 	<h1>Loaded Files:</h1>
-	<select name="SelectedClip" ng-model="selectedClip" ng-options="clip.name for clip in clips" size="10"></select><br />
+	<select name="SelectedClip" ng-model="vm.selectedClip" ng-options="clip.name for clip in vm.clips" size="20"></select><br />
 
-	<button rob-open-dialog-button="dialogEdit">Edit Selected Video</button>
-	<button ng-click="deleteClip()">Delete Selected Video</button>
+	<button id="openDialogEdit">Edit Selected Video</button>
+	<button ng-click="vm.deleteClip()">Delete Selected Video</button>
 </div>
 
 <div id="dialogs" ng-include="'views/dialogs.html'"></div>
 
 </body>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<script type="text/javascript" src="//www.webrtc-experiment.com/MediaStreamRecorder.js"></script>
 
 <script type="text/javascript" src="js/lib/angular.min.js"></script>
 <script type="text/javascript" src="js/lib/plupload.full.min.js"></script>
 <script type="text/javascript" src="js/lib/jquery.ui.plupload.min.js"></script>
-<script type="text/javascript" src="js/lib/MediaStreamRecorder.js"></script>
 
-<script type="text/javascript" src="js/VideoRecorderService.js"></script>
-<script type="text/javascript" src="js/VideoAppDirectives.js"></script>
-<script type="text/javascript" src="js/VideoAppController.js"></script>
-<script type="text/javascript" src="js/init.js"></script>
+<script type="text/javascript" src="js/VideoAppStart.js"></script>
+
+<script type="text/javascript" src="js/services/VideoRecorderService.js"></script>
+<script type="text/javascript" src="js/services/SpeechRecognitionService.js"></script>
+
+<script type="text/javascript" src="js/directives/jQueryDialog.js"></script>
+<script type="text/javascript" src="js/directives/flashVideo.js"></script>
+<script type="text/javascript" src="js/directives/plUpload.js"></script>
+<script type="text/javascript" src="js/directives/recorderControls.js"></script>
+
+<script type="text/javascript" src="js/controllers/VideoAppController.js"></script>
 
 </html>

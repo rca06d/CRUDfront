@@ -1,19 +1,43 @@
-<div id="dialogUpload" rob-make-dialog="dialogOptions.upload" width="600" height="360">
-	<div id="pluploadContainer" rob-plupload url="http://localhost:3001/api/uploadclip" name="uploaded_files"></div>
+<div id="dialogUpload" rob-make-dialog
+                       modal="true"
+                       auto-open="false"
+                       width="600"
+                       height="450"
+                       rob-open-dialog-button="openDialogUpload">
+	<div id="pluploadContainer" rob-plupload on-upload-complete="vm.getAllClips"></div>
 </div>
-
-<div id="dialogRecord" rob-make-dialog="dialogOptions.record">
-	<video id="videoRecordWindow" autoplay controls=""></video>
+<!--
+<div id="dialogRecord" rob-make-dialog
+                       modal="true"
+                       auto-open="false"
+                       width="670"
+                       height="600"
+                       open="vm.recordDialogOpen"
+                       rob-open-dialog-button="openDialogRecord">
+	<video id="videoRecordWindow" rob-video-js rob-options="vm.config.videoJS.record" rob-recorder="true" class="video-js"></video>
 	<div>
-		<button ng-click="startRecording()">Record</button>
-		<button ng-click="stopRecording()">Stop</button>
-		<button ng-click="uploadRecordedVideo()">Save</button>
+		<button ng-click="vm.startRecording()">Record</button>
+		<button ng-click="vm.stopRecording()">Stop</button>
+		<button ng-click="vm.uploadRecordedVideo()">Save</button>
 	</div>
 
-	<textarea id="workingTranscript" ng-model="transcript"></textarea>
+	<textarea id="workingTranscript" ng-model="vm.transcript"></textarea>
 </div>
-
-<div id="dialogEdit" rob-make-dialog="dialogOptions.edit">
-	<label for="videoNameInput">Name:</label><input type="text" ng-model="selectedClip.name" id="videoNameInput" />
-	<label for="editTranscript">Transcript:</label><textarea id="editTranscript" ng-model="selectedClip.transcript"></textarea>
+-->
+<div id="dialogEdit" rob-make-dialog
+                       modal="true"
+                       auto-open="false"
+                       width="500"
+                       height="350"
+                       buttons="vm.editDialogButtons"
+                       rob-open-dialog-button="openDialogEdit">
+	<table class="formTbl">
+		<tr>
+			<td><label for="videoNameInput">Name:</label></td><td><input type="text" ng-model="vm.selectedClip.name" id="videoNameInput" /></td>
+		</tr>
+		<tr>
+			<td><label for="editTranscript">Transcript:</label></td><td><textarea id="editTranscript" ng-model="vm.selectedClip.transcript"></textarea></td>
+		</tr>
+	</table>
+		
 </div>

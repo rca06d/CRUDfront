@@ -8,32 +8,49 @@ h1 {
 	font-weight: bold;
 }
 
-label {
-	vertical-align:middle;
-	margin:0 0.7em 0 0;
-    padding:0;
+input, textarea {
+	width:100%;
 }
 
 textarea {
-	display: block;
-	width:320px;
 	height:100px;
 }
 
-video {
+#videoMainWindow {
 	margin-bottom: 1em;
+	width:640px;
+	height:480px;
+	display: block;
+}
+
+.formTbl {
+	width: 100%;
+}
+
+.formTbl td:first-child {
+	vertical-align: top;
+	width:4em;
+	text-align: right;
+}
+
+.formTbl label {
+	margin-top: 0.4em;
+	display: inline-block;
 }
 
 #leftPane, #centerPane, #rightPane {
+	float:left;
+}
+
+#leftPane > div, #centerPane, #rightPane {
 	margin:0.5em;
 	padding:0.5em;
-	float:left;
 	border:solid 1px #EEEEEE;
 }
 
 #selectedTranscript {
-	margin:0.5em;
-	padding:0.5em;
+	margin:1em 0em;
+	width:640px;
 }
 
 #rightPane {
@@ -52,8 +69,4 @@ video {
 	width:100%;
 	padding:1em 1.5em;
 	font-weight: bold;
-}
-
-#dialogEdit input {
-	width:300px;
 }
