@@ -15,13 +15,13 @@
 
 <div id="leftPane">
 	<div>
-		<button id="openDialogRecord" ng-click="vm.recordButtonClick()">Record A Video</button>
+		<button id="openDialogRecord" ng-click="vm.recordModeInit()">Record A Video</button>
 		<button id="openDialogUpload">Upload A Video</button>
 	</div>
 
 	<div ng-show="vm.recordMode">
 		<button id="recordButton" rob-recorder-controls>Record</button>
-		<button id="saveButton" ng-show="vm.recordedVideo" ng-click="vm.saveVideo()">Save Video</button>
+		<button id="saveButton" ng-show="vm.recordedVideoBlob" ng-click="vm.saveVideo()">Save Video</button>
 	</div>
 </div>
 	

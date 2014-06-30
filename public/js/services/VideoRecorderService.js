@@ -36,9 +36,7 @@ VideoApp.factory('videoRecorder', function () {
 			return monitor;
 		},
 		openCamera: function() {
-			navigator.getUserMedia({video: true, audio: true}, recordInit, function (e) { 
-				console.log('Reeeejected!', e); 
-			});
+			navigator.getUserMedia({video: true, audio: true}, recordInit, VideoRecorder.onPermissionDenied);
 		},
 
 		start: function () {
@@ -61,12 +59,22 @@ VideoApp.factory('videoRecorder', function () {
 			if(videoBlob) return videoBlob;
 		},
 
+		onPermissionGranted: function() {
+			console.log("Permission to use camera granted!");
+		},
+
+		onPermissionDenied: function(error) {
+			console.log("Permission to use camera denied!");
+		},
+
 		onVideoAvailable: function(video) {
 			console.log("Video available");
 		}
 	};
 
 	function recordInit(localMediaStream) {
+
+		VideoRecorder.onPermissionGranted();
 
 		mediaStream = localMediaStream;
 
