@@ -1,7 +1,7 @@
 VideoApp.controller('VideoAppController', function($scope, $http, videoRecorder, speechRecognizer) {
 
 	// base location for all the api calls
-	var apiServer = "http://localhost:3001/api/";
+	var apiServer = "https://localhost:3001/api/";
 	var vm = this;
 
 	//------------- data ------------------------//
@@ -40,10 +40,9 @@ VideoApp.controller('VideoAppController', function($scope, $http, videoRecorder,
 		// also want to not show the "Save Video" button any more, so we need to forget the video
 		vm.recordedVideoBlob = false;
 
-		// TODO: the server should probably figure out mime type and store it in a new field
 		// this is where we swap players if the new videos mime type is a flash type
 		// TODO: make this aware of the browser as well
-		if (getMimeType(newVal.clientPath) == "video/flv") vm.videoPlayerTemplate = "views/videoflash.html";
+		if (newVal.mimeType == "video/flv") vm.videoPlayerTemplate = "views/videoflash.html";
 		else vm.videoPlayerTemplate = "views/videohtml5.html";
 	});
 
@@ -94,42 +93,6 @@ VideoApp.controller('VideoAppController', function($scope, $http, videoRecorder,
 		return d.getFullYear() + "_" + (d.getMonth()+1) + "_" + d.getDate() + "_" + d.getHours() + "_" + d.getMinutes() + "_" + d.getSeconds() + "_" + d.getMilliseconds();
 	}
 
-	// probably not the safest way to get mime type, but i was in a hurry
-	function getMimeType(url) {
-		if(!url) return false;
-    	var extension = url.split(".").pop();
-
-    	switch (extension) {
-	    case "mp4":
-	        return "video/mp4";
-	    case "webm":
-	        return "video/webm";
-	    case "ogv":
-	        return "video/ogg";
-	    case "mov":
-	        // TODO: figure out why this doesn't work as video/quicktime and DOES work as video/webm
-	        return "video/webm";
-	    case "flv":
-	        return "video/flv";
-	    case "wmv":
-	        return "video/x-ms-wmv";
-	    case "avi":
-	        return "video/x-msvideo";
-	    case "m3u8":
-	        return "video/x-mpegURL";
-	    case "ts":
-	        return "video/MP2T";
-	    case "3gp":
-	        return "video/3gpp";
-	    case undefined:
-	        console.log("Video source is undefined!");
-	        return false;
-	    default:
-	        console.log("Video source could not be associated with a mime type"); 
-	        return false;
-	    }
-	}
-
 	// simple file upload to server using FormData
 	function uploadToServer(file, fileName) {
 
@@ -138,7 +101,7 @@ VideoApp.controller('VideoAppController', function($scope, $http, videoRecorder,
 		fd.append("fileUpload", file, fileName);
 
 		// didn't find a great explanation of why this weirdness works, but it does somehow
-		return $http.post("http://localhost:3001/api/uploadclip", fd, {
+		return $http.post(apiServer + "uploadclip", fd, {
             transformRequest: angular.identity,
             headers: {'Content-Type': undefined}
         })

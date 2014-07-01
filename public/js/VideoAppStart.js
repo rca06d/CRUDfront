@@ -6,5 +6,8 @@ VideoApp.config(function($sceDelegateProvider) {
 	// Allow same origin resource loads.
 	"self",
 	// Allow loading from our assets domain. * and ** are wildcards. TODO: look up difference
-	"http://localhost:3001/**"]);
+	"http://localhost:3001/**",
+	"https://localhost:3001/**",
+	"//localhost:3001/**",
+	"localhost:3001/**"]);
 });

@@ -3,7 +3,7 @@ VideoApp.directive('robPlupload', function () {
 	var options = {
 		file_data_name: null,
         runtimes: "html5, flash, silverlight, gears, browserplus",
-		url: "http://localhost:3001/api/uploadclip",
+		url: "https://localhost:3001/api/uploadclip",
         max_file_size : '1gb',
         multipart: true,
         flash_swf_url : '/public/scripts/Moxie.swf',
