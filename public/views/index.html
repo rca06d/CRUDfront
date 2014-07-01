@@ -8,7 +8,31 @@
     <link rel="stylesheet" type="text/css" href="css/jquery.ui.plupload.css" />
     <link rel="stylesheet" type="text/css" href="css/main.css" />
 
-    <script type="text/javascript" src="js/lib/swfobject/swfobject.js"></script>
+    <!-- plugins -->
+    <script type="text/javascript" defer src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script type="text/javascript" defer src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+	<script type="text/javascript" defer src="//www.webrtc-experiment.com/MediaStreamRecorder.js"></script>
+
+	<script type="text/javascript" defer src="js/lib/swfobject/swfobject.js"></script>
+	<script type="text/javascript" defer src="js/lib/angular.min.js"></script>
+	<script type="text/javascript" defer src="js/lib/plupload.full.min.js"></script>
+	<script type="text/javascript" defer src="js/lib/jquery.ui.plupload.min.js"></script>
+
+	<!-- init -->
+	<script type="text/javascript" defer src="js/VideoAppStart.js"></script>
+
+	<!-- services -->
+	<script type="text/javascript" defer src="js/services/VideoRecorderService.js"></script>
+	<script type="text/javascript" defer src="js/services/SpeechRecognitionService.js"></script>
+
+	<!-- directives -->
+	<script type="text/javascript" defer src="js/directives/jQueryDialog.js"></script>
+	<script type="text/javascript" defer src="js/directives/flashVideo.js"></script>
+	<script type="text/javascript" defer src="js/directives/plUpload.js"></script>
+	<script type="text/javascript" defer src="js/directives/recorderControls.js"></script>
+
+	<!-- controllers -->
+	<script type="text/javascript" defer src="js/controllers/VideoAppController.js"></script>
 </head>
 
 <body ng-controller="VideoAppController as vm">
@@ -43,25 +67,5 @@
 <div id="dialogs" ng-include="'views/dialogs.html'"></div>
 
 </body>
-
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-<script type="text/javascript" src="//www.webrtc-experiment.com/MediaStreamRecorder.js"></script>
-
-<script type="text/javascript" src="js/lib/angular.min.js"></script>
-<script type="text/javascript" src="js/lib/plupload.full.min.js"></script>
-<script type="text/javascript" src="js/lib/jquery.ui.plupload.min.js"></script>
-
-<script type="text/javascript" src="js/VideoAppStart.js"></script>
-
-<script type="text/javascript" src="js/services/VideoRecorderService.js"></script>
-<script type="text/javascript" src="js/services/SpeechRecognitionService.js"></script>
-
-<script type="text/javascript" src="js/directives/jQueryDialog.js"></script>
-<script type="text/javascript" src="js/directives/flashVideo.js"></script>
-<script type="text/javascript" src="js/directives/plUpload.js"></script>
-<script type="text/javascript" src="js/directives/recorderControls.js"></script>
-
-<script type="text/javascript" src="js/controllers/VideoAppController.js"></script>
 
 </html>
