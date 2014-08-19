@@ -8,7 +8,7 @@ VideoApp.factory('videoRecorder', function () {
 
 	// if getUserMedia not supported, return object of empty funcs so it fails gracefully
 	if (!(navigator.getUserMedia)) {
-		console.log("Video capture not supported.")
+		console.log("Video capture not supported.");
 		return {
 			setMonitor: function() {},
 			getMonitor: function() {},
